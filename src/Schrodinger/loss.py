@@ -13,24 +13,24 @@
 # limitations under the License.
 # ============================================================================
 """Loss function for PINNs (Schrodinger)"""
+import numpy as np
 import mindspore.common.dtype as mstype
-from mindspore import nn, ops
+from mindspore import nn, Tensor
 
 
-class PINNs_loss(nn.Cell):
+class Loss(nn.Cell):
     """
     Loss of the PINNs network (Schrodinger), only works with full-batch training. Training data are organized in
     the following order: initial condition points ([0:n0]), boundary condition points ([n0:(n0+2*nb)]),
     collocation points ([(n0+2*nb)::])
     """
     def __init__(self, n0, nb, nf, reduction='sum'):
-        super(PINNs_loss, self).__init__(reduction)
+        super().__init__(reduction)
         self.n0 = n0
         self.nb = nb
         self.nf = nf
-        self.zeros = ops.Zeros()
         self.mse = nn.MSELoss(reduction='mean')
-        self.f_target = self.zeros((self.nf, 1), mstype.float32)
+        self.f_target = Tensor(np.zeros((self.nf, 1)), mstype.float32)
 
     def construct(self, pred, target):
         """

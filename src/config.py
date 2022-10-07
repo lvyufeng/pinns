@@ -18,9 +18,9 @@ Network config setting
 
 
 # config for Schrodinger equation scenario
-config_Sch = {'epoch': 50000, 'lr': 0.0001, 'N0': 50, 'Nb': 50, 'Nf': 20000, 'num_neuron': 100,
+config_Sch = {'epochs': 50000, 'lr': 0.0001, 'N0': 50, 'Nb': 50, 'Nf': 20000, 'num_neuron': 100,
               'seed': 2, 'path': './Data/NLS.mat', 'ck_path': './ckpoints/'}
 
 # config for Navier-Stokes equation scenario
-config_navier = {'epoch': 19000, 'lr': 0.01, 'n_train': 5000, 'path': './Data/cylinder_nektar_wake.mat',
+config_navier = {'epochs': 19000, 'lr': 0.01, 'n_train': 5000, 'path': './Data/cylinder_nektar_wake.mat',
                  'noise': 0.0, 'num_neuron': 20, 'ck_path': './navier_ckpoints/', 'seed': 7, 'batch_size': 500}

@@ -19,7 +19,6 @@ from src import config
 from src.NavierStokes.train_ns import train_navier
 from src.Schrodinger.train_sch import train_sch
 import mindspore
-mindspore.set_context(mode=mindspore.PYNATIVE_MODE)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train PINNs')
@@ -39,7 +38,7 @@ if __name__ == '__main__':
         if data_path != '':
             conf['path'] = data_path
         if epoch_num > 0:
-            conf['epoch'] = epoch_num
+            conf['epochs'] = epoch_num
         train_sch(**conf)
     elif pinns_scenario in ['ns', 'NavierStokes', 'navier', 'Navier']:
         conf = config.config_navier
@@ -49,7 +48,7 @@ if __name__ == '__main__':
         if noise >= 0:
             conf['noise'] = noise
         if epoch_num > 0:
-            conf['epoch'] = epoch_num
+            conf['epochs'] = epoch_num
         train_navier(**conf)
     else:
         print(f'{pinns_scenario} is not supported in PINNs training for now')

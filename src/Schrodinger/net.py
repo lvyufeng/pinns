@@ -19,7 +19,7 @@ from mindspore import Parameter, Tensor, nn, ops
 from mindspore.common.initializer import TruncatedNormal, Zero, initializer
 
 
-class neural_net(nn.Cell):
+class Network(nn.Cell):
     """
     Neural net to fit the wave function
 
@@ -29,7 +29,7 @@ class neural_net(nn.Cell):
         ub (np.array): upper bound (x, t) of domain
     """
     def __init__(self, layers, lb, ub):
-        super(neural_net, self).__init__()
+        super().__init__()
         self.layers = layers
         self.lb = Tensor(lb, mstype.float32)
         self.ub = Tensor(ub, mstype.float32)
@@ -68,7 +68,7 @@ class PINNs(nn.Cell):
     """
     def __init__(self, layers, lb, ub):
         super(PINNs, self).__init__()
-        self.nn = neural_net(layers, lb, ub)
+        self.nn = Network(layers, lb, ub)
 
     def construct(self, X):
         """forward propagation"""
